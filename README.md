@@ -1,5 +1,11 @@
 # WALL-E – Autonomous Obstacle-Avoiding Robot 🤖
 
+![Project Badge](https://img.shields.io/badge/Project-Active-brightgreen)
+![Arduino](https://img.shields.io/badge/Arduino-00979D?style=flat&logo=arduino&logoColor=white)
+![Electronics](https://img.shields.io/badge/Electronics-Projects-blue)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)
+![License](https://img.shields.io/badge/License-Educational-orange)
+
 **WALL-E** is an autonomous obstacle-avoiding robot developed as an Electronics Engineering project.  
 It can sense obstacles, make decisions autonomously, and navigate safely without any human intervention.
 
