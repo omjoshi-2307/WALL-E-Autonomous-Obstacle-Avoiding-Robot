@@ -14,6 +14,10 @@
 The system uses **real-time ultrasonic sensing** and **embedded decision-making logic** to navigate safely without human intervention.
 
 📍 **Institute:** PCET's Nutan Maharashtra Institute of Engineering and Technology, Pune  
+🕒 Duration: 4 Weeks  
+👨‍💻 Role: Hardware & Documentation Lead  
+🛠️ Domain: Embedded Systems & Robotics  
+🎓 Project Type: Academic Team Project
 
 ---
 
@@ -65,6 +69,26 @@ This logic enables **collision-free autonomous navigation**.
 
 ---
 
+## 🧠 Algorithm Overview
+1. Initialize ultrasonic sensor, servo, and motors  
+2. Measure distance continuously  
+3. If distance < threshold:
+   - Stop movement
+   - Rotate servo to scan left & right
+   - Compare distances
+   - Move in safest direction
+4. Repeat loop
+
+---
+
+| Parameter | Value |
+|---------|-------|
+| Obstacle Distance Threshold | 20 cm |
+| Servo Scan Angle | 0° – 180° |
+| Motor Voltage | 9V |
+
+---
+
 ## 👥 Team Members
 
 - Om Joshi – [LinkedIn](https://www.linkedin.com/in/0m-joshi2307/)  
@@ -76,13 +100,12 @@ This logic enables **collision-free autonomous navigation**.
 
 ---
 
-## 🧑‍💻 Individual Contribution – Om Joshi
-
-- Procured required electronic components  
-- Performed complete hardware assembly and chassis integration  
-- Executed circuit wiring and system-level integration  
-- **Designed and created the complete project PPT presentation**  
-- Assisted in testing, debugging, and final demonstration  
+## 🧑‍💻 Individual Contribution (Om Joshi)
+- Led hardware assembly and end-to-end circuit integration  
+- Implemented obstacle detection logic using ultrasonic sensor & Arduino  
+- Designed and created the complete project PPT for evaluation and demo  
+- Assisted team members in troubleshooting wiring and motor issues  
+- Ensured smooth robot operation during final demonstration  
 
 ---
 
@@ -102,6 +125,15 @@ This logic enables **collision-free autonomous navigation**.
 - Hardware debugging and circuit troubleshooting  
 - Team-based project collaboration  
 - Practical robotics problem-solving experience  
+
+---
+
+## 🧰 Skills Gained
+- Arduino programming  
+- Ultrasonic sensor calibration  
+- Motor driver interfacing  
+- Embedded hardware debugging  
+- Technical presentation design
 
 ---
 
