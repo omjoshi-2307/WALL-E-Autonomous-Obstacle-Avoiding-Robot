@@ -539,83 +539,85 @@ while True:
 
 
 
+PRACTICAL 8
 
-
-# PRACTICAL 8: MARKS CALCULATION USING INFIX TO POSTFIX
+# Infix to Postfix and Evaluation
 
 def precedence(op):
-    if op in ('+', '-'):
+    if op == '+' or op == '-':
         return 1
-    if op in ('*', '/'):
+    if op == '*' or op == '/':
         return 2
     return 0
+
 
 def infix_to_postfix(expression):
     stack = []
     postfix = []
-    tokens = expression.replace('(', ' ( ').replace(')', ' ) ').split()
 
-    for token in tokens:
-        if token.isalnum():
-            postfix.append(token)
+    for ch in expression:
+        if ch.isalpha():
+            postfix.append(ch)
 
-        elif token == '(':
-            stack.append(token)
+        elif ch == '(':
+            stack.append(ch)
 
-        elif token == ')':
+        elif ch == ')':
             while stack and stack[-1] != '(':
                 postfix.append(stack.pop())
-            if stack:
-                stack.pop()
+            stack.pop()
 
         else:
-            while stack and stack[-1] != '(' and precedence(stack[-1]) >= precedence(token):
+            while stack and stack[-1] != '(' and precedence(stack[-1]) >= precedence(ch):
                 postfix.append(stack.pop())
-            stack.append(token)
+            stack.append(ch)
 
     while stack:
         postfix.append(stack.pop())
 
-    return postfix
+    return ''.join(postfix)
+
 
 def evaluate_postfix(postfix, values):
     stack = []
 
-    for token in postfix:
-        if token in values:
-            stack.append(values[token])
-        elif token.replace('.', '', 1).isdigit():
-            stack.append(float(token))
+    for ch in postfix:
+        if ch.isalpha():
+            stack.append(values[ch])
         else:
             b = stack.pop()
             a = stack.pop()
 
-            if token == '+':
+            if ch == '+':
                 stack.append(a + b)
-            elif token == '-':
+            elif ch == '-':
                 stack.append(a - b)
-            elif token == '*':
+            elif ch == '*':
                 stack.append(a * b)
-            elif token == '/':
-                if b == 0:
-                    raise ZeroDivisionError("Division by zero")
+            elif ch == '/':
                 stack.append(a / b)
 
-    return stack[-1]
+    return stack.pop()
 
-expression = input("Enter infix formula: ")
+
+# Accept infix expression
+expression = input("Enter marks formula: ")
+
+# Convert to postfix
 postfix = infix_to_postfix(expression)
 
-print("Postfix Expression:", " ".join(postfix))
-
+# Accept values
+variables = sorted(set(ch for ch in expression if ch.isalpha()))
 values = {}
 
-for name in set(token for token in postfix if token.isalpha()):
-    values[name] = float(input("Enter marks/value for " + name + ": "))
+for var in variables:
+    values[var] = float(input("Enter marks for " + var + ": "))
 
+# Evaluate postfix expression
 result = evaluate_postfix(postfix, values)
 
-print("Final Calculated Marks:", result)
+print("\nPostfix expression:", postfix)
+print("Calculated result:", result)
 
 
 
@@ -904,52 +906,56 @@ while True:
 
 
 
+PRCATICAL 12
 
 
 
+from collections import deque
 
-# PRACTICAL 12: PRIORITY QUEUE STUDENT CGPA MANAGEMENT
+class ServiceDeque:
+    def __init__(self, size):
+        self.dq = deque()
+        self.size = size
 
-class PriorityQueue:
-    def __init__(self):
-        self.queue = []
-        self.processed = 0
-
-    def insert(self, name, cgpa):
-        student = (name, cgpa)
-        self.queue.append(student)
-        self.queue.sort(key=lambda x: x[1], reverse=True)
-        print("\nAfter Insertion:")
+    def add_emergency(self, request):
+        if len(self.dq) == self.size:
+            print("Deque Full! Cannot add request.")
+        else:
+            self.dq.appendleft("Emergency: " + request)
+            print("Emergency request added at front.")
         self.display()
 
-    def delete(self):
-        if not self.queue:
-            print("Queue is empty!")
+    def add_normal(self, request):
+        if len(self.dq) == self.size:
+            print("Deque Full! Cannot add request.")
         else:
-            student = self.queue.pop(0)
-            self.processed += 1
-            print("\nDeleted Student:", student[0])
-            print("CGPA:", student[1])
-            self.display()
+            self.dq.append("Normal: " + request)
+            print("Normal request added at rear.")
+        self.display()
+
+    def serve(self):
+        if not self.dq:
+            print("Deque Empty! No request to serve.")
+        else:
+            print("Serving:", self.dq.popleft())
+        self.display()
 
     def display(self):
-        if not self.queue:
-            print("Queue is empty.")
+        if not self.dq:
+            print("Deque is empty.")
         else:
-            print("Student Queue:")
-            for student in self.queue:
-                print(student[0], "-", student[1])
+            print("Deque:", list(self.dq))
 
-    def count_processed(self):
-        print("Students Processed:", self.processed)
 
-pq = PriorityQueue()
+# Main program
+sd = ServiceDeque(3)
 
-pq.insert("Amit", 8.2)
-pq.insert("Sneha", 9.5)
-pq.insert("Rahul", 7.8)
+sd.add_normal("Fee Payment")
+sd.add_normal("ID Card")
+sd.add_emergency("Medical Help")
+sd.add_normal("Scholarship")  # Deque full
 
-pq.delete()
-pq.delete()
-
-pq.count_processed()
+sd.serve()
+sd.serve()
+sd.serve()
+sd.serve()  # Deque empty
