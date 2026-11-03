@@ -1,0 +1,955 @@
+# PRACTICAL 1: STUDENT INFORMATION SYSTEM
+
+students = []
+
+def insert_student():
+    roll = int(input("Enter Roll Number: "))
+    name = input("Enter Name: ")
+    cgpa = float(input("Enter CGPA: "))
+    pos = int(input("Enter position to insert: "))
+    if 1 <= pos <= len(students) + 1:
+        students.insert(pos - 1, [roll, name, cgpa])
+        print("Student inserted successfully!")
+    else:
+        print("Invalid position!")
+
+def delete_student():
+    roll = int(input("Enter Roll Number to delete: "))
+    for s in students:
+        if s[0] == roll:
+            students.remove(s)
+            print("Student deleted successfully!")
+            return
+    print("Student not found!")
+
+def search_student():
+    roll = int(input("Enter Roll Number to search: "))
+    for s in students:
+        if s[0] == roll:
+            print("Student Record:", s)
+            return
+    print("Student not found!")
+
+def display_students():
+    if not students:
+        print("No student records available.")
+    else:
+        print("\nRoll No\tName\tCGPA")
+        for s in students:
+            print(*s, sep="\t")
+
+while True:
+    print("\n--- Student Information System ---")
+    print("1. Insert Student")
+    print("2. Delete Student")
+    print("3. Search Student")
+    print("4. Display All Students")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        insert_student()
+    elif ch == 2:
+        delete_student()
+    elif ch == 3:
+        search_student()
+    elif ch == 4:
+        display_students()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice!")
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 2: DAILY ATTENDANCE USING SINGLY LINKED LIST
+
+class Node:
+    def __init__(self, attendance):
+        self.attendance = attendance
+        self.next = None
+
+class AttendanceList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, attendance):
+        if attendance not in ['P', 'A']:
+            print("Invalid attendance!")
+            return
+
+        new_node = Node(attendance)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+    def update(self, day, status):
+        if status not in ['P', 'A']:
+            print("Invalid status!")
+            return
+
+        temp = self.head
+        current_day = 1
+
+        while temp:
+            if current_day == day:
+                temp.attendance = status
+                print("Attendance updated successfully!")
+                return
+            temp = temp.next
+            current_day += 1
+
+        print("Invalid day!")
+
+    def count(self):
+        present = absent = 0
+        temp = self.head
+
+        while temp:
+            if temp.attendance == 'P':
+                present += 1
+            else:
+                absent += 1
+            temp = temp.next
+
+        return present, absent
+
+    def display(self):
+        temp = self.head
+        day = 1
+
+        if temp is None:
+            print("No attendance records available.")
+            return
+
+        while temp:
+            print("Day", day, ":", "Present" if temp.attendance == 'P' else "Absent")
+            temp = temp.next
+            day += 1
+
+attendance = AttendanceList()
+
+while True:
+    print("\n--- Attendance Management System ---")
+    print("1. Insert Attendance")
+    print("2. Update Attendance")
+    print("3. Count Present and Absent Days")
+    print("4. Display Attendance")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        status = input("Enter attendance (P/A): ").upper()
+        attendance.insert(status)
+    elif ch == 2:
+        day = int(input("Enter day number: "))
+        status = input("Enter attendance (P/A): ").upper()
+        attendance.update(day, status)
+    elif ch == 3:
+        p, a = attendance.count()
+        print("Present Days:", p)
+        print("Absent Days:", a)
+    elif ch == 4:
+        attendance.display()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice!")
+
+
+
+
+
+
+
+
+# PRACTICAL 3: INTERNAL ASSESSMENT MARKS USING ARRAY AND LINKED LIST
+
+class Node:
+    def __init__(self, marks):
+        self.marks = marks
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, marks):
+        new_node = Node(marks)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+    def display(self):
+        temp = self.head
+        index = 1
+
+        print("\nLinked List Representation:")
+        while temp:
+            print("Node", index, ":", temp.marks)
+            temp = temp.next
+            index += 1
+
+    def count_above_80(self):
+        count = 0
+        temp = self.head
+
+        while temp:
+            if temp.marks > 80:
+                count += 1
+            temp = temp.next
+
+        return count
+
+linked_list = LinkedList()
+marks_array = []
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    marks = int(input("Enter IA marks of student " + str(i + 1) + ": "))
+    marks_array.append(marks)
+    linked_list.insert(marks)
+
+print("\nArray Representation:")
+for i in range(n):
+    print("Index", i, ":", marks_array[i])
+
+linked_list.display()
+
+array_count = sum(1 for marks in marks_array if marks > 80)
+linked_count = linked_list.count_above_80()
+
+print("\nStudents scoring above 80 marks:")
+print("Using Array:", array_count)
+print("Using Linked List:", linked_count)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 4: MERIT LIST USING SELECTION SORT AND INSERTION SORT
+
+students = [
+    [101, "Amit", 8.2],
+    [102, "Sneha", 9.1],
+    [103, "Rahul", 7.8],
+    [104, "Priya", 9.5],
+    [105, "Neha", 8.7],
+    [106, "Kunal", 9.0],
+    [107, "Riya", 8.5]
+]
+
+def selection_sort(students):
+    n = len(students)
+
+    for i in range(n - 1):
+        max_index = i
+
+        for j in range(i + 1, n):
+            if students[j][2] > students[max_index][2]:
+                max_index = j
+
+        students[i], students[max_index] = students[max_index], students[i]
+
+def insertion_sort(students):
+    shifts = 0
+
+    for i in range(1, len(students)):
+        key = students[i]
+        j = i - 1
+
+        while j >= 0 and students[j][2] < key[2]:
+            students[j + 1] = students[j]
+            j -= 1
+            shifts += 1
+
+        students[j + 1] = key
+
+    return shifts
+
+def display_students(students):
+    print("\nRoll No\tName\tCGPA")
+    print("-" * 30)
+
+    for s in students:
+        print(s[0], "\t", s[1], "\t", s[2])
+
+selection_list = students.copy()
+insertion_list = students.copy()
+
+selection_sort(selection_list)
+
+print("\nMERIT LIST USING SELECTION SORT")
+display_students(selection_list)
+
+shifts = insertion_sort(insertion_list)
+
+print("\nMERIT LIST USING INSERTION SORT")
+display_students(insertion_list)
+
+print("\nNumber of shifts in Insertion Sort:", shifts)
+
+print("\nTOP 5 STUDENTS")
+for i in range(min(5, len(insertion_list))):
+    s = insertion_list[i]
+    print(i + 1, ".", s[1], "- CGPA:", s[2])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 5: STUDENT RECORD SEARCH SYSTEM
+
+students = []
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    print("\nEnter details of student", i + 1)
+    roll = int(input("Roll Number: "))
+    name = input("Name: ")
+    division = input("Division: ")
+    students.append([roll, name, division])
+
+def linear_search(name):
+    comparisons = 0
+
+    for s in students:
+        comparisons += 1
+
+        if s[1].lower() == name.lower():
+            print("\nStudent Found!")
+            print("Roll Number:", s[0])
+            print("Name:", s[1])
+            print("Division:", s[2])
+            print("Linear Search Comparisons:", comparisons)
+            return
+
+    print("Student not found!")
+    print("Linear Search Comparisons:", comparisons)
+
+def binary_search(roll):
+    arr = sorted(students, key=lambda x: x[0])
+    low = 0
+    high = len(arr) - 1
+    comparisons = 0
+
+    while low <= high:
+        mid = (low + high) // 2
+        comparisons += 1
+
+        if arr[mid][0] == roll:
+            print("\nStudent Found!")
+            print("Roll Number:", arr[mid][0])
+            print("Name:", arr[mid][1])
+            print("Division:", arr[mid][2])
+            print("Binary Search Comparisons:", comparisons)
+            return
+
+        elif arr[mid][0] < roll:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    print("Student not found!")
+    print("Binary Search Comparisons:", comparisons)
+
+while True:
+    print("\n--- Student Record Search ---")
+    print("1. Linear Search by Name")
+    print("2. Binary Search by Roll Number")
+    print("3. Display All Students")
+    print("4. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        name = input("Enter student Name to search: ")
+        linear_search(name)
+    elif ch == 2:
+        roll = int(input("Enter Roll Number to search: "))
+        binary_search(roll)
+    elif ch == 3:
+        for s in students:
+            print(s)
+    elif ch == 4:
+        break
+    else:
+        print("Invalid choice!")
+
+
+
+
+
+
+
+
+# PRACTICAL 6: STUDENT PERCENTAGES USING QUICK SORT
+
+def partition(arr, low, high):
+    pivot = arr[low]
+    i = low + 1
+    j = high
+
+    while True:
+        while i <= high and arr[i] <= pivot:
+            i += 1
+
+        while arr[j] > pivot:
+            j -= 1
+
+        if i >= j:
+            break
+
+        arr[i], arr[j] = arr[j], arr[i]
+
+    arr[low], arr[j] = arr[j], arr[low]
+    return j
+
+def quick_sort(arr, low, high):
+    if low < high:
+        p = partition(arr, low, high)
+        quick_sort(arr, low, p - 1)
+        quick_sort(arr, p + 1, high)
+
+percentages = [35, 50, 15, 25, 80, 20, 90, 45]
+
+print("Student Percentages before sorting:")
+print(percentages)
+
+quick_sort(percentages, 0, len(percentages) - 1)
+
+print("\nStudent Percentages after Quick Sort:")
+print(percentages)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 7: BROWSER HISTORY USING STACK
+
+history = []
+
+def visit_page():
+    url = input("Enter URL to visit: ")
+    history.append(url)
+    print("Page visited successfully!")
+
+def go_back():
+    if len(history) > 1:
+        history.pop()
+        print("Went back to previous page.")
+    elif len(history) == 1:
+        history.pop()
+        print("No pages left in history.")
+    else:
+        print("No browsing history available!")
+
+def current_page():
+    if not history:
+        print("No page is currently open.")
+    else:
+        print("Current Page:", history[-1])
+
+def display_history():
+    if not history:
+        print("Browsing history is empty.")
+    else:
+        print("\nBrowsing History (Bottom to Top):")
+        for page in history:
+            print(page)
+
+while True:
+    print("\n--- Student Portal Browser ---")
+    print("1. Visit New Page")
+    print("2. Go Back")
+    print("3. Display Current Page")
+    print("4. Show Browsing History")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        visit_page()
+    elif ch == 2:
+        go_back()
+    elif ch == 3:
+        current_page()
+    elif ch == 4:
+        display_history()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice!")
+
+
+
+
+
+
+# PRACTICAL 8: MARKS CALCULATION USING INFIX TO POSTFIX
+
+def precedence(op):
+    if op in ('+', '-'):
+        return 1
+    if op in ('*', '/'):
+        return 2
+    return 0
+
+def infix_to_postfix(expression):
+    stack = []
+    postfix = []
+    tokens = expression.replace('(', ' ( ').replace(')', ' ) ').split()
+
+    for token in tokens:
+        if token.isalnum():
+            postfix.append(token)
+
+        elif token == '(':
+            stack.append(token)
+
+        elif token == ')':
+            while stack and stack[-1] != '(':
+                postfix.append(stack.pop())
+            if stack:
+                stack.pop()
+
+        else:
+            while stack and stack[-1] != '(' and precedence(stack[-1]) >= precedence(token):
+                postfix.append(stack.pop())
+            stack.append(token)
+
+    while stack:
+        postfix.append(stack.pop())
+
+    return postfix
+
+def evaluate_postfix(postfix, values):
+    stack = []
+
+    for token in postfix:
+        if token in values:
+            stack.append(values[token])
+        elif token.replace('.', '', 1).isdigit():
+            stack.append(float(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            elif token == '/':
+                if b == 0:
+                    raise ZeroDivisionError("Division by zero")
+                stack.append(a / b)
+
+    return stack[-1]
+
+expression = input("Enter infix formula: ")
+postfix = infix_to_postfix(expression)
+
+print("Postfix Expression:", " ".join(postfix))
+
+values = {}
+
+for name in set(token for token in postfix if token.isalpha()):
+    values[name] = float(input("Enter marks/value for " + name + ": "))
+
+result = evaluate_postfix(postfix, values)
+
+print("Final Calculated Marks:", result)
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 9: COLLEGE BILLING SYSTEM USING INFIX TO POSTFIX
+
+def precedence(op):
+    if op in ('+', '-'):
+        return 1
+    if op in ('*', '/'):
+        return 2
+    return 0
+
+def infix_to_postfix(expression):
+    stack = []
+    postfix = []
+    tokens = expression.replace('(', ' ( ').replace(')', ' ) ').split()
+
+    print("\nToken\t\tStack\t\tPostfix")
+
+    for token in tokens:
+        if token.isalnum():
+            postfix.append(token)
+
+        elif token == '(':
+            stack.append(token)
+
+        elif token == ')':
+            while stack and stack[-1] != '(':
+                postfix.append(stack.pop())
+            if stack:
+                stack.pop()
+
+        else:
+            while stack and stack[-1] != '(' and precedence(stack[-1]) >= precedence(token):
+                postfix.append(stack.pop())
+            stack.append(token)
+
+        print(token, "\t\t", stack, "\t\t", postfix)
+
+    while stack:
+        postfix.append(stack.pop())
+
+    return postfix
+
+def evaluate_postfix(postfix, values):
+    stack = []
+
+    print("\n--- Postfix Evaluation ---")
+
+    for token in postfix:
+        if token in values:
+            stack.append(values[token])
+        elif token.replace('.', '', 1).isdigit():
+            stack.append(float(token))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+
+            if token == '+':
+                stack.append(a + b)
+            elif token == '-':
+                stack.append(a - b)
+            elif token == '*':
+                stack.append(a * b)
+            elif token == '/':
+                if b == 0:
+                    raise ZeroDivisionError("Division by zero")
+                stack.append(a / b)
+
+        print(token, stack)
+
+    return stack[-1]
+
+print("===== COLLEGE BILLING SYSTEM =====")
+print("Use variables: Tuition, Hostel, ExamFee, Scholarship")
+print("Operators: +, -, *, /, and parentheses")
+
+expression = input("\nEnter fee formula in infix form: ")
+postfix = infix_to_postfix(expression)
+
+print("\nPostfix Expression:", " ".join(postfix))
+
+values = {}
+
+for name in ["Tuition", "Hostel", "ExamFee", "Scholarship"]:
+    values[name] = float(input("Enter " + name + ": "))
+
+final_fees = evaluate_postfix(postfix, values)
+
+print("\nFinal Payable Fees: Rs.", round(final_fees, 2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 10: STUDENT ADMISSION QUEUE
+
+class AdmissionQueue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, token):
+        self.queue.append(token)
+        print("Student token", token, "added to queue.")
+        self.display()
+
+    def dequeue(self):
+        if not self.queue:
+            print("Admission Queue is Empty!")
+        else:
+            token = self.queue.pop(0)
+            print("Student with token", token, "is processed.")
+            self.display()
+
+    def front_rear(self):
+        if not self.queue:
+            print("Admission Queue is Empty!")
+        else:
+            print("Front Token:", self.queue[0])
+            print("Rear Token:", self.queue[-1])
+
+    def display(self):
+        if not self.queue:
+            print("Admission Queue is Empty!")
+        else:
+            print("Complete Admission Queue:", self.queue)
+
+aq = AdmissionQueue()
+
+while True:
+    print("\n--- Student Admission Queue ---")
+    print("1. Enqueue Student Token")
+    print("2. Dequeue and Process Student")
+    print("3. Display Front and Rear Token")
+    print("4. Display Complete Queue")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        token = int(input("Enter Student Token Number: "))
+        aq.enqueue(token)
+    elif ch == 2:
+        aq.dequeue()
+    elif ch == 3:
+        aq.front_rear()
+    elif ch == 4:
+        aq.display()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice! Please try again.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 11: CIRCULAR QUEUE FOR BUS PASS DISTRIBUTION
+
+class CircularQueue:
+    def __init__(self, size):
+        self.size = size
+        self.queue = [None] * size
+        self.front = -1
+        self.rear = -1
+
+    def enqueue(self, student_id):
+        if (self.rear + 1) % self.size == self.front:
+            print("Queue is Full! Cannot add student.")
+            return
+
+        if self.front == -1:
+            self.front = 0
+
+        self.rear = (self.rear + 1) % self.size
+        self.queue[self.rear] = student_id
+        print("Student ID", student_id, "added to queue.")
+
+    def dequeue(self):
+        if self.front == -1:
+            print("Queue is Empty! No student waiting.")
+            return
+
+        student_id = self.queue[self.front]
+        print("Bus pass issued to Student ID:", student_id)
+
+        self.queue[self.front] = None
+
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+
+    def status(self):
+        if self.front == -1:
+            print("Queue is Empty.")
+        elif (self.rear + 1) % self.size == self.front:
+            print("Queue is Full.")
+        else:
+            print("Queue is neither Full nor Empty.")
+
+    def display(self):
+        if self.front == -1:
+            print("Queue is Empty.")
+            return
+
+        print("Students waiting for bus passes:", end=" ")
+        i = self.front
+
+        while True:
+            print(self.queue[i], end=" ")
+            if i == self.rear:
+                break
+            i = (i + 1) % self.size
+
+        print()
+
+size = int(input("Enter queue size: "))
+cq = CircularQueue(size)
+
+while True:
+    print("\n--- Bus Pass Distribution ---")
+    print("1. Insert Student ID")
+    print("2. Issue Bus Pass")
+    print("3. Check Queue Status")
+    print("4. Display Queue")
+    print("5. Exit")
+
+    ch = int(input("Enter your choice: "))
+
+    if ch == 1:
+        student_id = int(input("Enter Student ID: "))
+        cq.enqueue(student_id)
+    elif ch == 2:
+        cq.dequeue()
+    elif ch == 3:
+        cq.status()
+    elif ch == 4:
+        cq.display()
+    elif ch == 5:
+        break
+    else:
+        print("Invalid choice!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+# PRACTICAL 12: PRIORITY QUEUE STUDENT CGPA MANAGEMENT
+
+class PriorityQueue:
+    def __init__(self):
+        self.queue = []
+        self.processed = 0
+
+    def insert(self, name, cgpa):
+        student = (name, cgpa)
+        self.queue.append(student)
+        self.queue.sort(key=lambda x: x[1], reverse=True)
+        print("\nAfter Insertion:")
+        self.display()
+
+    def delete(self):
+        if not self.queue:
+            print("Queue is empty!")
+        else:
+            student = self.queue.pop(0)
+            self.processed += 1
+            print("\nDeleted Student:", student[0])
+            print("CGPA:", student[1])
+            self.display()
+
+    def display(self):
+        if not self.queue:
+            print("Queue is empty.")
+        else:
+            print("Student Queue:")
+            for student in self.queue:
+                print(student[0], "-", student[1])
+
+    def count_processed(self):
+        print("Students Processed:", self.processed)
+
+pq = PriorityQueue()
+
+pq.insert("Amit", 8.2)
+pq.insert("Sneha", 9.5)
+pq.insert("Rahul", 7.8)
+
+pq.delete()
+pq.delete()
+
+pq.count_processed()
