@@ -1,0 +1,719 @@
+# ============================================================
+# PRACTICAL 01: STUDENT INFORMATION SYSTEM USING LIST
+# Operations: Insert, Delete, Search and Display
+# ============================================================
+
+students = []
+
+while True:
+    print("\n1. Insert Student")
+    print("2. Delete Student")
+    print("3. Search Student")
+    print("4. Display Students")
+    print("5. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        roll = int(input("Enter Roll Number: "))
+        name = input("Enter Name: ")
+        students.append([roll, name])
+        print("Student inserted successfully.")
+
+    elif choice == 2:
+        roll = int(input("Enter Roll Number to delete: "))
+        found = False
+
+        for student in students:
+            if student[0] == roll:
+                students.remove(student)
+                found = True
+                print("Student deleted successfully.")
+                break
+
+        if not found:
+            print("Student not found.")
+
+    elif choice == 3:
+        roll = int(input("Enter Roll Number to search: "))
+        found = False
+
+        for student in students:
+            if student[0] == roll:
+                print("Student Found:", student)
+                found = True
+                break
+
+        if not found:
+            print("Student not found.")
+
+    elif choice == 4:
+        if students:
+            print("Student Records:")
+            for student in students:
+                print("Roll Number:", student[0], "Name:", student[1])
+        else:
+            print("No student records available.")
+
+    elif choice == 5:
+        break
+
+    else:
+        print("Invalid choice.")
+
+
+# ============================================================
+# PRACTICAL 02: DAILY ATTENDANCE USING SINGLY LINKED LIST
+# Operations: Insert, Delete and Display
+# ============================================================
+
+class Node:
+    def __init__(self, roll):
+        self.roll = roll
+        self.next = None
+
+
+class Attendance:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, roll):
+        new_node = Node(roll)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+        print("Attendance added.")
+
+    def delete(self, roll):
+        temp = self.head
+        prev = None
+
+        while temp:
+            if temp.roll == roll:
+                if prev is None:
+                    self.head = temp.next
+                else:
+                    prev.next = temp.next
+
+                print("Attendance deleted.")
+                return
+
+            prev = temp
+            temp = temp.next
+
+        print("Student not found.")
+
+    def display(self):
+        temp = self.head
+
+        if temp is None:
+            print("No attendance records.")
+            return
+
+        print("Present Students:")
+        while temp:
+            print(temp.roll, end=" -> ")
+            temp = temp.next
+        print("None")
+
+
+attendance = Attendance()
+
+while True:
+    print("\n1. Mark Attendance")
+    print("2. Delete Attendance")
+    print("3. Display Attendance")
+    print("4. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        roll = int(input("Enter Roll Number: "))
+        attendance.insert(roll)
+
+    elif choice == 2:
+        roll = int(input("Enter Roll Number: "))
+        attendance.delete(roll)
+
+    elif choice == 3:
+        attendance.display()
+
+    elif choice == 4:
+        break
+
+    else:
+        print("Invalid choice.")
+
+
+# ============================================================
+# PRACTICAL 03: IA MARKS USING ARRAY AND SINGLY LINKED LIST
+# ============================================================
+
+# Using Array (Python List)
+
+marks = []
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    mark = int(input("Enter IA marks: "))
+    marks.append(mark)
+
+print("\nArray Representation:")
+for i in range(len(marks)):
+    print("Index:", i, "Marks:", marks[i])
+
+print("\nArray Elements:")
+print(marks)
+
+
+# Using Singly Linked List
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def insert(self, data):
+        new_node = Node(data)
+
+        if self.head is None:
+            self.head = new_node
+        else:
+            temp = self.head
+            while temp.next:
+                temp = temp.next
+            temp.next = new_node
+
+    def display(self):
+        temp = self.head
+
+        print("\nLinked List Representation:")
+        while temp:
+            print(temp.data, "->", end=" ")
+            temp = temp.next
+        print("None")
+
+
+ll = LinkedList()
+
+for i in range(n):
+    ll.insert(marks[i])
+
+ll.display()
+
+
+# ============================================================
+# PRACTICAL 04: MERIT LIST USING SELECTION SORT
+# AND INSERTION SORT
+# ============================================================
+
+def selection_sort(arr):
+    arr = arr.copy()
+    n = len(arr)
+
+    for i in range(n):
+        max_index = i
+
+        for j in range(i + 1, n):
+            if arr[j] > arr[max_index]:
+                max_index = j
+
+        arr[i], arr[max_index] = arr[max_index], arr[i]
+
+    return arr
+
+
+def insertion_sort(arr):
+    arr = arr.copy()
+
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+
+        while j >= 0 and arr[j] < key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+
+    return arr
+
+
+n = int(input("Enter number of students: "))
+marks = []
+
+for i in range(n):
+    mark = int(input("Enter marks: "))
+    marks.append(mark)
+
+print("\nOriginal Marks:", marks)
+print("Merit List using Selection Sort:", selection_sort(marks))
+print("Merit List using Insertion Sort:", insertion_sort(marks))
+
+
+# ============================================================
+# PRACTICAL 05: STUDENT RECORD SEARCH
+# LINEAR SEARCH BY NAME AND BINARY SEARCH BY ROLL NUMBER
+# ============================================================
+
+students = []
+
+n = int(input("Enter number of students: "))
+
+for i in range(n):
+    roll = int(input("Enter Roll Number: "))
+    name = input("Enter Name: ")
+    students.append([roll, name])
+
+
+# Linear Search by Name
+
+search_name = input("\nEnter name to search: ")
+found = False
+
+for student in students:
+    if student[1].lower() == search_name.lower():
+        print("Student Found:", student)
+        found = True
+        break
+
+if not found:
+    print("Student not found.")
+
+
+# Binary Search by Roll Number
+
+students.sort(key=lambda x: x[0])
+
+search_roll = int(input("\nEnter Roll Number to search: "))
+
+low = 0
+high = len(students) - 1
+found = False
+
+while low <= high:
+    mid = (low + high) // 2
+
+    if students[mid][0] == search_roll:
+        print("Student Found:", students[mid])
+        found = True
+        break
+
+    elif students[mid][0] < search_roll:
+        low = mid + 1
+
+    else:
+        high = mid - 1
+
+if not found:
+    print("Student not found.")
+
+
+# ============================================================
+# PRACTICAL 06: STUDENT PERCENTAGES USING QUICK SORT
+# ============================================================
+
+def partition(arr, low, high):
+    pivot = arr[high]
+    i = low - 1
+
+    for j in range(low, high):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+
+    arr[i + 1], arr[high] = arr[high], arr[i + 1]
+    return i + 1
+
+
+def quick_sort(arr, low, high):
+    if low < high:
+        pi = partition(arr, low, high)
+
+        quick_sort(arr, low, pi - 1)
+        quick_sort(arr, pi + 1, high)
+
+
+n = int(input("Enter number of students: "))
+percentages = []
+
+for i in range(n):
+    p = float(input("Enter percentage: "))
+    percentages.append(p)
+
+quick_sort(percentages, 0, len(percentages) - 1)
+
+print("\nSorted Percentages:")
+print(percentages)
+
+
+# ============================================================
+# PRACTICAL 07: BROWSER HISTORY USING STACK
+# Operations: Visit, Back, Display
+# ============================================================
+
+history = []
+
+while True:
+    print("\n1. Visit Website")
+    print("2. Back")
+    print("3. Display History")
+    print("4. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        website = input("Enter Website URL: ")
+        history.append(website)
+        print("Website visited.")
+
+    elif choice == 2:
+        if history:
+            print("Going back from:", history.pop())
+        else:
+            print("No browsing history.")
+
+    elif choice == 3:
+        if history:
+            print("Browser History:")
+            for website in reversed(history):
+                print(website)
+        else:
+            print("History is empty.")
+
+    elif choice == 4:
+        break
+
+    else:
+        print("Invalid choice.")
+
+
+# ============================================================
+# PRACTICAL 08: MARKS CALCULATION USING INFIX TO POSTFIX
+# ============================================================
+
+def precedence(operator):
+    if operator == '+' or operator == '-':
+        return 1
+    elif operator == '*' or operator == '/':
+        return 2
+    return 0
+
+
+def infix_to_postfix(expression):
+    stack = []
+    postfix = []
+
+    for token in expression.split():
+
+        if token.isalnum() or token.replace('.', '', 1).isdigit():
+            postfix.append(token)
+
+        elif token == '(':
+            stack.append(token)
+
+        elif token == ')':
+            while stack and stack[-1] != '(':
+                postfix.append(stack.pop())
+
+            if stack:
+                stack.pop()
+
+        else:
+            while (stack and stack[-1] != '(' and
+                   precedence(stack[-1]) >= precedence(token)):
+                postfix.append(stack.pop())
+
+            stack.append(token)
+
+    while stack:
+        postfix.append(stack.pop())
+
+    return " ".join(postfix)
+
+
+expression = input(
+    "Enter infix expression with spaces (example: 80 + 70 * 2): "
+)
+
+print("Postfix Expression:", infix_to_postfix(expression))
+
+
+# ============================================================
+# PRACTICAL 09: COLLEGE BILLING USING INFIX TO POSTFIX
+# AND POSTFIX EVALUATION
+# ============================================================
+
+def precedence(operator):
+    if operator == '+' or operator == '-':
+        return 1
+    elif operator == '*' or operator == '/':
+        return 2
+    return 0
+
+
+def infix_to_postfix(expression):
+    stack = []
+    postfix = []
+
+    for token in expression.split():
+
+        if token.replace('.', '', 1).isdigit():
+            postfix.append(token)
+
+        elif token == '(':
+            stack.append(token)
+
+        elif token == ')':
+            while stack and stack[-1] != '(':
+                postfix.append(stack.pop())
+
+            if stack:
+                stack.pop()
+
+        else:
+            while (stack and stack[-1] != '(' and
+                   precedence(stack[-1]) >= precedence(token)):
+                postfix.append(stack.pop())
+
+            stack.append(token)
+
+    while stack:
+        postfix.append(stack.pop())
+
+    return postfix
+
+
+def evaluate_postfix(postfix):
+    stack = []
+
+    for token in postfix:
+        if token.replace('.', '', 1).isdigit():
+            stack.append(float(token))
+
+        else:
+            b = stack.pop()
+            a = stack.pop()
+
+            if token == '+':
+                stack.append(a + b)
+
+            elif token == '-':
+                stack.append(a - b)
+
+            elif token == '*':
+                stack.append(a * b)
+
+            elif token == '/':
+                stack.append(a / b)
+
+    return stack[-1]
+
+
+expression = input(
+    "Enter billing expression with spaces (example: 500 + 200 * 2): "
+)
+
+postfix = infix_to_postfix(expression)
+
+print("Postfix Expression:", " ".join(postfix))
+print("Total Bill:", evaluate_postfix(postfix))
+
+
+# ============================================================
+# PRACTICAL 10: STUDENT ADMISSION QUEUE USING FIFO
+# ============================================================
+
+queue = []
+
+while True:
+    print("\n1. Add Student")
+    print("2. Process Student")
+    print("3. Display Queue")
+    print("4. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        name = input("Enter Student Name: ")
+        queue.append(name)
+        print("Student added to queue.")
+
+    elif choice == 2:
+        if queue:
+            print("Processing Student:", queue.pop(0))
+        else:
+            print("Queue is empty.")
+
+    elif choice == 3:
+        print("Admission Queue:", queue)
+
+    elif choice == 4:
+        break
+
+    else:
+        print("Invalid choice.")
+
+
+# ============================================================
+# PRACTICAL 11: CIRCULAR QUEUE FOR BUS PASS DISTRIBUTION
+# ============================================================
+
+class CircularQueue:
+    def __init__(self, size):
+        self.size = size
+        self.queue = [None] * size
+        self.front = -1
+        self.rear = -1
+
+    def enqueue(self, item):
+        if (self.rear + 1) % self.size == self.front:
+            print("Queue is Full.")
+            return
+
+        if self.front == -1:
+            self.front = 0
+
+        self.rear = (self.rear + 1) % self.size
+        self.queue[self.rear] = item
+
+        print("Bus Pass Request Added.")
+
+    def dequeue(self):
+        if self.front == -1:
+            print("Queue is Empty.")
+            return
+
+        print("Processed Request:", self.queue[self.front])
+
+        if self.front == self.rear:
+            self.front = -1
+            self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+
+    def display(self):
+        if self.front == -1:
+            print("Queue is Empty.")
+            return
+
+        print("Bus Pass Queue:")
+        i = self.front
+
+        while True:
+            print(self.queue[i], end=" ")
+
+            if i == self.rear:
+                break
+
+            i = (i + 1) % self.size
+
+        print()
+
+
+size = int(input("Enter Queue Size: "))
+
+if size <= 0:
+    print("Queue size must be greater than zero.")
+else:
+    cq = CircularQueue(size)
+
+    while True:
+        print("\n1. Add Request")
+        print("2. Process Request")
+        print("3. Display Queue")
+        print("4. Exit")
+
+        choice = int(input("Enter choice: "))
+
+        if choice == 1:
+            name = input("Enter Student Name: ")
+            cq.enqueue(name)
+
+        elif choice == 2:
+            cq.dequeue()
+
+        elif choice == 3:
+            cq.display()
+
+        elif choice == 4:
+            break
+
+        else:
+            print("Invalid choice.")
+
+
+# ============================================================
+# PRACTICAL 12: PRIORITY QUEUE FOR STUDENT CGPA MANAGEMENT
+# Higher CGPA = Higher Priority
+# ============================================================
+
+class PriorityQueue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, name, cgpa):
+        self.queue.append([name, cgpa])
+
+        self.queue.sort(
+            key=lambda student: student[1],
+            reverse=True
+        )
+
+        print("Student added successfully.")
+
+    def dequeue(self):
+        if not self.queue:
+            print("Priority Queue is Empty.")
+        else:
+            student = self.queue.pop(0)
+            print("Highest Priority Student:", student)
+
+    def display(self):
+        if not self.queue:
+            print("Priority Queue is Empty.")
+        else:
+            print("\nStudent Priority List:")
+
+            for student in self.queue:
+                print("Name:", student[0], "CGPA:", student[1])
+
+
+pq = PriorityQueue()
+
+while True:
+    print("\n1. Add Student")
+    print("2. Remove Highest Priority Student")
+    print("3. Display Students")
+    print("4. Exit")
+
+    choice = int(input("Enter choice: "))
+
+    if choice == 1:
+        name = input("Enter Student Name: ")
+        cgpa = float(input("Enter CGPA: "))
+        pq.enqueue(name, cgpa)
+
+    elif choice == 2:
+        pq.dequeue()
+
+    elif choice == 3:
+        pq.display()
+
+    elif choice == 4:
+        break
+
+    else:
+        print("Invalid choice.")
