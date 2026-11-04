@@ -1,0 +1,222 @@
+PRACTICAL 01: STUDENT INFORMATION SYSTEM USING LIST
+
+Algorithm:
+1. Start.
+2. Initialize an empty list named students.
+3. Display the menu: Insert, Delete, Search, Display and Exit.
+4. Accept the user's choice.
+5. If choice is 1, accept roll number and name and insert the record into the list.
+6. If choice is 2, accept roll number, search the record and delete it if found.
+7. If choice is 3, accept roll number, search and display the record if found.
+8. If choice is 4, display all student records.
+9. If choice is 5, terminate the program.
+10. Otherwise, display Invalid Choice.
+11. Repeat until the user exits.
+12. Stop.
+
+PRACTICAL 02: DAILY ATTENDANCE USING SINGLY LINKED LIST
+
+Algorithm:
+1. Start.
+2. Create a Node class containing roll number and next pointer.
+3. Initialize head as NULL.
+4. Display the menu: Mark Attendance, Delete Attendance, Display Attendance and Exit.
+5. Accept the user's choice.
+6. If choice is 1, accept roll number and create a new node.
+7. If the list is empty, make the new node the head.
+8. Otherwise, traverse to the last node and insert the new node.
+9. If choice is 2, search for the given roll number and delete the corresponding node if found.
+10. If choice is 3, traverse and display all attendance records.
+11. If choice is 4, terminate the program.
+12. Repeat until the user exits.
+13. Stop.
+
+PRACTICAL 03: IA MARKS USING ARRAY AND SINGLY LINKED LIST
+
+Algorithm:
+1. Start.
+2. Create an empty array named marks.
+3. Accept the number of students.
+4. Accept IA marks of all students and insert them into the array.
+5. Display array elements with their indexes.
+6. Create a Node class containing data and next pointer.
+7. Initialize head as NULL.
+8. Traverse the array and create a new node for each mark.
+9. Insert each node at the end of the linked list.
+10. Traverse the linked list and display all marks.
+11. Stop.
+
+PRACTICAL 04: MERIT LIST USING SELECTION SORT AND INSERTION SORT
+
+Algorithm:
+1. Start.
+2. Accept the number of students.
+3. Accept marks of all students and store them in a list.
+4. Display the original marks.
+5. Apply Selection Sort:
+   a. Assume the current element is the maximum.
+   b. Compare it with all remaining elements.
+   c. Find the maximum element.
+   d. Swap it with the current element.
+   e. Repeat until the list is sorted in descending order.
+6. Display the Selection Sort result.
+7. Apply Insertion Sort:
+   a. Start from the second element.
+   b. Store the current element as key.
+   c. Compare the key with previous elements.
+   d. Shift smaller elements one position to the right.
+   e. Insert the key at its correct position.
+   f. Repeat until all elements are sorted.
+8. Display the Insertion Sort result.
+9. Stop.
+
+PRACTICAL 05: STUDENT RECORD SEARCH USING LINEAR AND BINARY SEARCH
+
+Algorithm:
+1. Start.
+2. Accept the number of students.
+3. Accept roll number and name of each student.
+4. Store all student records in a list.
+5. Perform Linear Search:
+   a. Accept the name to search.
+   b. Compare it with each student's name.
+   c. If matched, display the student record.
+   d. Otherwise, display Student Not Found.
+6. Perform Binary Search:
+   a. Sort student records by roll number.
+   b. Accept the roll number to search.
+   c. Initialize low = 0 and high = n - 1.
+   d. Calculate mid = (low + high) // 2.
+   e. If the middle roll number matches, display the record.
+   f. If the search roll number is greater, set low = mid + 1.
+   g. Otherwise, set high = mid - 1.
+   h. Repeat until found or low > high.
+7. If not found, display Student Not Found.
+8. Stop.
+
+PRACTICAL 06: STUDENT PERCENTAGES USING QUICK SORT
+
+Algorithm:
+1. Start.
+2. Accept the number of students.
+3. Accept percentages of all students and store them in a list.
+4. Select the last element as the pivot.
+5. Initialize i = low - 1.
+6. Compare each element with the pivot.
+7. If the element is smaller than or equal to the pivot, increment i and swap elements.
+8. Place the pivot at its correct position.
+9. Get the pivot index.
+10. Apply Quick Sort recursively to the left and right sublists.
+11. Repeat until all elements are sorted.
+12. Display the sorted percentages in ascending order.
+13. Stop.
+
+PRACTICAL 07: BROWSER HISTORY USING STACK
+
+Algorithm:
+1. Start.
+2. Initialize an empty stack named history.
+3. Display the menu: Visit Website, Back, Display History and Exit.
+4. Accept the user's choice.
+5. If choice is 1, accept website URL and push it onto the stack.
+6. If choice is 2, check whether the stack is empty.
+7. If not empty, pop the top website and display it.
+8. If choice is 3, display all websites from top to bottom.
+9. If choice is 4, terminate the program.
+10. Repeat until the user exits.
+11. Stop.
+
+PRACTICAL 08: MARKS CALCULATION USING INFIX TO POSTFIX
+
+Algorithm:
+1. Start.
+2. Accept an infix expression from the user.
+3. Initialize an empty stack and postfix list.
+4. Read the expression token by token.
+5. If the token is an operand, add it to the postfix list.
+6. If the token is an opening bracket, push it onto the stack.
+7. If the token is a closing bracket, pop operators until the opening bracket is found.
+8. If the token is an operator, compare its precedence with the top operator of the stack.
+9. Pop operators having greater or equal precedence.
+10. Push the current operator onto the stack.
+11. After reading all tokens, pop the remaining operators into the postfix list.
+12. Display the postfix expression.
+13. Stop.
+
+PRACTICAL 09: COLLEGE BILLING USING INFIX TO POSTFIX AND POSTFIX EVALUATION
+
+Algorithm:
+1. Start.
+2. Accept a billing expression in infix form.
+3. Initialize an empty stack and postfix list.
+4. Convert the infix expression into postfix form.
+5. If the token is an operand, add it to the postfix list.
+6. If the token is an opening bracket, push it onto the stack.
+7. If the token is a closing bracket, pop operators until the opening bracket is found.
+8. If the token is an operator, compare precedence and pop higher or equal precedence operators.
+9. Push the current operator onto the stack.
+10. Pop all remaining operators and display the postfix expression.
+11. Initialize an empty evaluation stack.
+12. Read postfix tokens one by one.
+13. If the token is an operand, convert it into a number and push it onto the stack.
+14. If the token is an operator, pop two operands and perform the operation.
+15. Push the result onto the stack.
+16. The final value in the stack is the total bill.
+17. Display the total bill.
+18. Stop.
+
+PRACTICAL 10: STUDENT ADMISSION QUEUE USING FIFO
+
+Algorithm:
+1. Start.
+2. Initialize an empty queue.
+3. Display the menu: Add Student, Process Student, Display Queue and Exit.
+4. Accept the user's choice.
+5. If choice is 1, accept student name and insert it at the rear of the queue.
+6. If choice is 2, check whether the queue is empty.
+7. If not empty, remove the student from the front and display the name.
+8. If choice is 3, display all students in the queue.
+9. If choice is 4, terminate the program.
+10. Repeat until the user exits.
+11. Stop.
+
+PRACTICAL 11: CIRCULAR QUEUE FOR BUS PASS DISTRIBUTION
+
+Algorithm:
+1. Start.
+2. Accept the queue size.
+3. Create a circular queue of the given size.
+4. Initialize front = -1 and rear = -1.
+5. Display the menu: Add Request, Process Request, Display Queue and Exit.
+6. Accept the user's choice.
+7. If choice is 1, check whether the queue is full using (rear + 1) % size == front.
+8. If full, display Queue is Full.
+9. Otherwise, accept the student's name.
+10. If the queue is empty, set front = 0.
+11. Update rear = (rear + 1) % size and insert the request.
+12. If choice is 2, check whether the queue is empty.
+13. If empty, display Queue is Empty.
+14. Otherwise, process and remove the front request.
+15. If front == rear, set front = -1 and rear = -1.
+16. Otherwise, update front = (front + 1) % size.
+17. If choice is 3, traverse and display all queue elements.
+18. If choice is 4, terminate the program.
+19. Repeat until the user exits.
+20. Stop.
+
+PRACTICAL 12: PRIORITY QUEUE FOR STUDENT CGPA MANAGEMENT
+
+Algorithm:
+1. Start.
+2. Initialize an empty priority queue.
+3. Display the menu: Add Student, Remove Highest Priority Student, Display Students and Exit.
+4. Accept the user's choice.
+5. If choice is 1, accept student name and CGPA.
+6. Insert the student record into the priority queue.
+7. Sort the queue in descending order of CGPA.
+8. If choice is 2, check whether the priority queue is empty.
+9. If not empty, remove and display the student with the highest CGPA.
+10. If choice is 3, display all students in descending order of CGPA.
+11. If choice is 4, terminate the program.
+12. Repeat until the user exits.
+13. Stop.
