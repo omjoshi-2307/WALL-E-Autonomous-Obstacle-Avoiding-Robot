@@ -1,0 +1,339 @@
+OOPVC Viva Questions & Answers – All 9 Practicals
+Practical 1: Basic OOP Implementation
+1. What is OOP?
+OOP stands for Object-Oriented Programming. It is a programming approach based on classes and objects.
+
+2. What is a class?
+A class is a blueprint or template used to create objects.
+
+3. What is an object?
+An object is an instance of a class.
+
+4. What is a constructor?
+A constructor is a special member function that is automatically called when an object is created.
+
+5. What are the types of constructors?
+Default constructor, parameterized constructor and copy constructor.
+
+6. What is a destructor?
+A destructor is a special function called automatically when an object is destroyed.
+
+7. What is dynamic memory allocation?
+It is the process of allocating memory during program execution.
+
+8. What are new and delete in C++?
+new allocates memory dynamically, while delete releases that memory.
+
+9. What is the difference between a constructor and destructor?
+Constructor	Destructor
+Initializes an object	Cleans up an object
+Called during object creation	Called during object destruction
+Same name as class	Same name with ~
+Can have parameters	Cannot have parameters
+
+10. What is the purpose of the this pointer?
+It points to the current object of a class.
+Practical 2: Inheritance & Polymorphism
+1. What is inheritance?
+Inheritance is a feature in which one class acquires the properties and functions of another class.
+
+2. What are the types of inheritance?
+- Single inheritance
+- Multiple inheritance
+- Multilevel inheritance
+- Hierarchical inheritance
+- Hybrid inheritance
+3. What is polymorphism?
+Polymorphism means one name having multiple forms.
+
+4. What are the types of polymorphism?
+Compile-time polymorphism and runtime polymorphism.
+
+5. What is function overriding?
+When a derived class provides its own implementation of a base class function, it is called function overriding.
+
+6. What is a virtual function?
+A virtual function is a base-class function that supports runtime polymorphism.
+
+7. What is the difference between overloading and overriding?
+Overloading	Overriding
+Same function name with different parameters	Same function signature in derived class
+Usually compile-time polymorphism	Runtime polymorphism with virtual functions
+Can occur in the same class	Requires inheritance
+
+8. What is a base class?
+A class whose properties are inherited by another class.
+
+9. What is a derived class?
+A class that inherits properties from another class.
+
+10. Why do we use the virtual keyword?
+To achieve runtime polymorphism.
+Practical 3: Exception Handling & File Handling
+1. What is an exception?
+An exception is an error or unexpected condition that occurs during program execution.
+
+2. What is exception handling?
+It is a mechanism used to handle runtime errors without abruptly terminating the program.
+
+3. Which keywords are used in exception handling?
+try, throw and catch.
+
+4. What is a try block?
+It contains code that may generate an exception.
+
+5. What is a catch block?
+It handles the exception thrown by the try block.
+
+6. What is file handling?
+File handling is used to store and retrieve data from files.
+
+7. What are the file handling classes in C++?
+- ifstream – reads data.
+- ofstream – writes data.
+- fstream – reads and writes data.
+8. What is the difference between ifstream and ofstream?
+ifstream is used for reading files, while ofstream is used for writing files.
+
+9. What is the purpose of getline()?
+It reads an entire line from a file or input stream.
+
+10. What happens if a file does not exist?
+Opening it with ifstream generally fails, and the program can check the stream's state.
+Practical 4: OOP Design Patterns
+1. What is a design pattern?
+A design pattern is a reusable solution to a commonly occurring software design problem.
+
+2. What is the Singleton pattern?
+It ensures that a class has only one instance and provides a common access point to it.
+
+3. What is the Factory pattern?
+It creates objects without exposing the object-creation logic to the client.
+
+4. What is the Strategy pattern?
+It allows different algorithms or behaviours to be selected at runtime.
+
+5. What are the three design patterns in your program?
+Singleton, Factory and Strategy.
+
+6. Why is the Singleton constructor private?
+To prevent objects from being created directly outside the class.
+
+7. What is the purpose of a Factory class?
+It creates objects based on the given requirement.
+
+8. What is an abstract class?
+A class containing at least one pure virtual function is an abstract class in C++.
+
+9. What is a pure virtual function?
+A virtual function declared using = 0.
+
+10. Give a real-world example of the Strategy pattern.
+Selecting different payment methods such as cash, UPI or card.
+Practical 5: Introduction to Visual Computing & Graphics Programming
+1. What is computer graphics?
+Computer graphics is the creation and manipulation of visual images using computers.
+
+2. What is visual computing?
+It involves processing, analysing and generating visual information using computers.
+
+3. What is graphics.h?
+It is a graphics library used in certain C++ environments to draw shapes and create graphics windows.
+
+4. What is BGI?
+BGI stands for Borland Graphics Interface.
+
+5. What is initgraph()?
+It initializes the graphics system.
+
+6. What is closegraph()?
+It closes the graphics mode and graphics window.
+
+7. Which function is used to draw a line?
+line().
+
+8. Which function is used to draw a circle?
+circle().
+
+9. Which function is used to draw a rectangle?
+rectangle().
+
+10. What is pixel?
+A pixel is the smallest addressable element of a digital image or display.
+
+11. What is the purpose of setcolor()?
+It sets the drawing color.
+
+12. What is the purpose of getch()?
+It waits for a keyboard input before continuing.
+Practical 6: 2D Transformations
+1. What is a 2D transformation?
+It is the process of changing the position, size or orientation of a two-dimensional object.
+
+2. What are the types of 2D transformations?
+- Translation
+- Rotation
+- Scaling
+- Reflection
+- Shearing
+3. What is translation?
+Moving an object from one position to another.
+
+4. What is rotation?
+Turning an object around a fixed point or origin.
+
+5. What is scaling?
+Increasing or decreasing the size of an object.
+
+6. What is reflection?
+Creating a mirror image of an object.
+
+7. What is shearing?
+Slanting or distorting the shape of an object.
+
+8. What is a transformation matrix?
+A matrix used to represent and perform geometric transformations.
+
+9. What is the origin in 2D graphics?
+The point (0, 0) in the coordinate system.
+
+10. What is the purpose of cmath?
+It provides mathematical functions such as sin(), cos() and sqrt().
+
+11. What is the rotation formula?
+For anticlockwise rotation by angle θ:
+\[
+x'=x\cos\theta-y\sin\theta
+\]
+
+\[
+y'=x\sin\theta+y\cos\theta
+\]
+
+12. What is homogeneous coordinate representation?
+It represents 2D points using three coordinates (x, y, 1), allowing transformations to be represented using 3×3 matrices.
+Practical 7: 3D Transformations
+1. What is a 3D transformation?
+It changes the position, size or orientation of an object in three-dimensional space.
+
+2. What are the three axes in 3D graphics?
+X-axis, Y-axis and Z-axis.
+
+3. What are the basic 3D transformations?
+Translation, rotation and scaling.
+
+4. What is 3D translation?
+Moving an object along the X, Y and Z axes.
+
+5. What is 3D scaling?
+Changing the size of an object in three dimensions.
+
+6. What is 3D rotation?
+Rotating an object around the X, Y or Z axis.
+
+7. What is a 3D coordinate?
+A point represented by three values: X, Y and Z.
+
+8. What is a 4×4 transformation matrix?
+It is a homogeneous matrix used to represent 3D transformations.
+
+9. What is the difference between 2D and 3D transformations?
+2D	3D
+Uses X and Y axes	Uses X, Y and Z axes
+Uses 3×3 homogeneous matrices	Uses 4×4 homogeneous matrices
+Two-dimensional space	Three-dimensional space
+
+10. Around which axis does your current program rotate the point?
+It rotates the point around the Z-axis.
+Practical 8: Line Drawing & Clipping Algorithms
+1. What is line drawing?
+It is the process of generating a line using pixels on a computer screen.
+
+2. What is Bresenham's line drawing algorithm?
+It is an efficient algorithm used to draw straight lines using integer calculations.
+
+3. Why is Bresenham's algorithm preferred?
+It mainly uses integer arithmetic, making it efficient.
+
+4. What is clipping?
+Clipping is the process of removing the portions of graphical objects outside a specified viewing area.
+
+5. What is Cohen–Sutherland line clipping?
+It is an algorithm used to clip a line against a rectangular clipping window.
+
+6. What is a clipping window?
+A rectangular region inside which graphical objects are displayed.
+
+7. What are region codes?
+They are four-bit codes representing the position of a point relative to the clipping window.
+
+8. How many bits are used in Cohen–Sutherland?
+Four bits.
+
+9. What is trivial acceptance?
+When both endpoints are inside the clipping window, the line is accepted.
+
+10. What is trivial rejection?
+When both endpoints are outside in a common region, the line is rejected.
+
+11. What is the decision parameter in Bresenham's algorithm?
+It determines which pixel should be selected next while drawing a line.
+
+12. What is putpixel()?
+It plots a pixel at a specified coordinate with a specified color.
+Practical 9: Image Processing Basics
+1. What is image processing?
+Image processing is the process of modifying or analysing digital images using computers.
+
+2. What is OpenCV?
+OpenCV stands for Open Source Computer Vision Library. It is used for image processing and computer vision.
+
+3. What is grayscale conversion?
+It converts a colour image into shades of grey.
+
+4. What is thresholding?
+It converts an image into two or more intensity regions based on a threshold value.
+
+5. What is Gaussian blur?
+It is a smoothing technique used to reduce image noise and fine details.
+
+6. What is imread()?
+It reads an image from a file.
+
+7. What is imshow()?
+It displays an image in a window.
+
+8. What is cvtColor()?
+It converts an image from one colour space to another.
+
+9. What is threshold()?
+It applies thresholding to an image based on a specified threshold value.
+
+10. What is GaussianBlur()?
+It applies Gaussian smoothing to an image.
+
+11. What is a pixel in image processing?
+It is the smallest individual element of a digital image, containing intensity or colour information.
+
+12. What is the purpose of waitKey(0)?
+It waits indefinitely for a keyboard key press.
+
+13. Why do we use destroyAllWindows()?
+It closes all OpenCV display windows.
+
+14. What happens if image.jpg is missing?
+imread() returns an empty image, and the program displays an error message.
+
+6. Most important general viva questions
+These can be asked regardless of which practical you perform.
+Question	Short answer
+What is C++?	An object-oriented programming language.
+What is a compiler?	A program that translates source code into machine code or another executable form.
+What is a header file?	A file containing declarations of functions, classes and other program elements.
+What is a library?	A collection of reusable program functionality.
+What is a function?	A reusable block of code that performs a specific task.
+What is an array?	A collection of elements of the same data type.
+What is a pointer?	A variable that stores a memory address.
+What is recursion?	A function calling itself.
+What is debugging?	Finding and fixing errors in a program.
+What is an algorithm?	A step-by-step procedure for solving a problem.
