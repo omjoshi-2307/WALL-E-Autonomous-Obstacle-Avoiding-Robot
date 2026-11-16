@@ -1,0 +1,654 @@
+Practical 1: Basic OOP Implementation
+Aim: To implement classes, objects, constructors, destructors, and dynamic memory allocation in C++.
+
+Algorithm:
+1. Define a class named Student.
+2. Declare data members for student name and marks.
+3. Create a parameterized constructor to initialize the data.
+4. Create a member function to display student details.
+5. Allocate an object dynamically using the new operator.
+6. Display the student details.
+7. Release allocated memory using the delete operator.
+8. Execute the destructor automatically.
+Program:
+
+#include <iostream>
+using namespace std;
+
+class Student {
+    string name;
+    int marks;
+
+public:
+    Student(string n, int m) {
+        name = n;
+        marks = m;
+        cout << "Constructor called\n";
+    }
+
+    void display() {
+        cout << "\nStudent Name: " << name;
+        cout << "\nMarks: " << marks << endl;
+    }
+
+    ~Student() {
+        cout << "Destructor called\n";
+    }
+};
+
+int main() {
+    Student *s = new Student("Om", 85);
+
+    s->display();
+
+    delete s;
+
+    return 0;
+}
+
+
+
+
+Practical 2: Inheritance & Polymorphism
+Aim: To demonstrate single, multilevel, and hierarchical inheritance and runtime polymorphism using virtual functions.
+
+Algorithm:
+1. Create a base class named Person.
+2. Declare a virtual function named display().
+3. Create a derived class Student inheriting from Person.
+4. Override the display() function in the derived class.
+5. Create another derived class Teacher.
+6. Override its display() function.
+7. Use a base class pointer to refer to derived class objects.
+8. Call the function to demonstrate runtime polymorphism.
+Program:
+
+#include <iostream>
+using namespace std;
+
+class Person {
+public:
+    virtual void display() {
+        cout << "This is a Person\n";
+    }
+};
+
+class Student : public Person {
+public:
+    void display() override {
+        cout << "This is a Student\n";
+    }
+};
+
+class Teacher : public Person {
+public:
+    void display() override {
+        cout << "This is a Teacher\n";
+    }
+};
+
+int main() {
+    Person *p;
+
+    Student s;
+    Teacher t;
+
+    p = &s;
+    p->display();
+
+    p = &t;
+    p->display();
+
+    return 0;
+}
+
+
+
+
+Practical 3: Exception Handling & File Handling
+Aim: To implement programs that use exception handling and file operations for data storage and retrieval.
+
+Algorithm:
+1. Include the required file handling header.
+2. Create an output file using ofstream.
+3. Write student information into the file.
+4. Close the file.
+5. Open the same file using ifstream.
+6. Read and display the stored information.
+7. Use a try block to check for division by zero.
+8. Handle the exception using a catch block.
+9. Close the file after reading.
+Program:
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main() {
+    ofstream fout("student.txt");
+
+    fout << "Name: Om\n";
+    fout << "Marks: 85\n";
+
+    fout.close();
+
+    ifstream fin("student.txt");
+
+    if (!fin) {
+        cout << "File not found";
+        return 1;
+    }
+
+    string line;
+
+    cout << "File Contents:\n";
+
+    while (getline(fin, line)) {
+        cout << line << endl;
+    }
+
+    fin.close();
+
+    try {
+        int a = 10, b = 0;
+
+        if (b == 0) {
+            throw "Division by zero is not allowed";
+        }
+
+        cout << a / b;
+    }
+    catch (const char* msg) {
+        cout << "\nException: " << msg << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+Practical 4: OOP Design Patterns (Basic)
+Aim: To implement Factory, Singleton, and Strategy patterns using OOP principles.
+
+Algorithm:
+1. Create a Singleton class with a static instance.
+2. Restrict object creation using a private constructor.
+3. Create a Shape base class.
+4. Derive Circle and Rectangle classes from it.
+5. Implement a Factory class to create shape objects.
+6. Create a Strategy base class for payment methods.
+7. Implement different payment strategies.
+8. Execute all three design patterns in the main() function.
+Program:
+
+#include <iostream>
+using namespace std;
+
+// Singleton Pattern
+class Singleton {
+private:
+    Singleton() {}
+
+public:
+    static Singleton& getInstance() {
+        static Singleton obj;
+        return obj;
+    }
+
+    void show() {
+        cout << "Singleton Pattern\n";
+    }
+};
+
+// Factory Pattern
+class Shape {
+public:
+    virtual void draw() = 0;
+    virtual ~Shape() {}
+};
+
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Circle\n";
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing Rectangle\n";
+    }
+};
+
+class ShapeFactory {
+public:
+    static Shape* createShape(int choice) {
+        if (choice == 1)
+            return new Circle();
+        else
+            return new Rectangle();
+    }
+};
+
+// Strategy Pattern
+class Payment {
+public:
+    virtual void pay() = 0;
+    virtual ~Payment() {}
+};
+
+class Cash : public Payment {
+public:
+    void pay() override {
+        cout << "Payment using Cash\n";
+    }
+};
+
+class UPI : public Payment {
+public:
+    void pay() override {
+        cout << "Payment using UPI\n";
+    }
+};
+
+int main() {
+    Singleton::getInstance().show();
+
+    Shape *s = ShapeFactory::createShape(1);
+    s->draw();
+    delete s;
+
+    Payment *p = new UPI();
+    p->pay();
+    delete p;
+
+    return 0;
+}
+
+
+
+
+Practical 5: Introduction to Visual Computing & Graphics Programming
+Aim: To initialize graphics windows and draw basic shapes such as lines, circles, and rectangles using graphics libraries.
+
+Algorithm:
+1. Include the graphics library.
+2. Initialize the graphics window.
+3. Set the background color.
+4. Draw a line using line().
+5. Draw a circle using circle().
+6. Draw a rectangle using rectangle().
+7. Wait for a key press.
+8. Close the graphics window.
+Program:
+
+#include <graphics.h>
+#include <conio.h>
+
+int main() {
+    int gd = DETECT, gm;
+
+    initgraph(&gd, &gm, "");
+
+    setbkcolor(BLACK);
+    cleardevice();
+
+    setcolor(WHITE);
+    line(100, 100, 300, 100);
+
+    setcolor(YELLOW);
+    circle(200, 200, 50);
+
+    setcolor(GREEN);
+    rectangle(100, 300, 300, 400);
+
+    getch();
+    closegraph();
+
+    return 0;
+}
+
+
+
+
+Practical 6: 2D Transformations
+Aim: To apply 2D geometric transformations such as translation, rotation, scaling, reflection, and shearing on objects using matrix multiplication.
+
+Algorithm:
+1. Read the coordinates of a 2D point.
+2. Display the original coordinates.
+3. Apply translation using a transformation matrix.
+4. Apply rotation using the rotation matrix.
+5. Apply scaling using the scaling matrix.
+6. Apply reflection using the reflection matrix.
+7. Apply shearing using the shearing matrix.
+8. Display the transformed coordinates.
+Program:
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    float x, y, tx, ty, sx, sy, angle;
+
+    cout << "Enter point (x y): ";
+    cin >> x >> y;
+
+    cout << "Enter translation (tx ty): ";
+    cin >> tx >> ty;
+
+    cout << "Enter scaling (sx sy): ";
+    cin >> sx >> sy;
+
+    cout << "Enter rotation angle: ";
+    cin >> angle;
+
+    cout << "\nOriginal Point: " << x << ", " << y;
+
+    // Translation
+    float x1 = x + tx;
+    float y1 = y + ty;
+    cout << "\nTranslation: " << x1 << ", " << y1;
+
+    // Scaling
+    float x2 = x * sx;
+    float y2 = y * sy;
+    cout << "\nScaling: " << x2 << ", " << y2;
+
+    // Rotation
+    float rad = angle * 3.14159 / 180;
+    float x3 = x * cos(rad) - y * sin(rad);
+    float y3 = x * sin(rad) + y * cos(rad);
+    cout << "\nRotation: " << x3 << ", " << y3;
+
+    // Reflection about X-axis
+    cout << "\nReflection: " << x << ", " << -y;
+
+    // Shearing
+    float shx = 2, shy = 2;
+    float x4 = x + shx * y;
+    float y4 = y + shy * x;
+    cout << "\nShearing: " << x4 << ", " << y4;
+
+    return 0;
+}
+
+
+
+
+Practical 7: 3D Transformations
+Aim: To implement 3D transformations such as rotation, scaling, and translation and visualize transformed objects.
+
+Algorithm:
+1. Read the coordinates of a 3D point.
+2. Display the original coordinates.
+3. Apply translation along X, Y, and Z axes.
+4. Apply scaling along all three axes.
+5. Apply rotation around the Z-axis.
+6. Calculate the transformed coordinates.
+7. Display the final transformed point.
+Program:
+
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    float x, y, z, tx, ty, tz;
+    float sx, sy, sz, angle;
+
+    cout << "Enter 3D point (x y z): ";
+    cin >> x >> y >> z;
+
+    cout << "Enter translation (tx ty tz): ";
+    cin >> tx >> ty >> tz;
+
+    cout << "Enter scaling (sx sy sz): ";
+    cin >> sx >> sy >> sz;
+
+    cout << "Enter rotation angle: ";
+    cin >> angle;
+
+    // Translation
+    x = x + tx;
+    y = y + ty;
+    z = z + tz;
+
+    // Scaling
+    x = x * sx;
+    y = y * sy;
+    z = z * sz;
+
+    // Rotation around Z-axis
+    float rad = angle * 3.14159 / 180;
+
+    float newX = x * cos(rad) - y * sin(rad);
+    float newY = x * sin(rad) + y * cos(rad);
+
+    x = newX;
+    y = newY;
+
+    cout << "\nTransformed 3D Point:";
+    cout << "\nX = " << x;
+    cout << "\nY = " << y;
+    cout << "\nZ = " << z;
+
+    return 0;
+}
+
+
+
+
+Practical 8: Line Drawing & Clipping Algorithms
+Aim: To implement Bresenham’s line drawing algorithm and Cohen–Sutherland line clipping algorithm for graphical applications.
+
+Algorithm:
+1. Initialize the graphics window.
+2. Read the starting and ending coordinates of a line.
+3. Implement Bresenham’s algorithm using a decision parameter.
+4. Plot the line pixels using putpixel().
+5. Define the clipping window boundaries.
+6. Calculate region codes for both endpoints.
+7. Check whether the line is completely inside or outside the clipping window.
+8. Calculate intersection points when clipping is required.
+9. Draw the clipped line.
+Program:
+
+#include <graphics.h>
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+const int INSIDE = 0;
+const int LEFT = 1;
+const int RIGHT = 2;
+const int BOTTOM = 4;
+const int TOP = 8;
+
+int xmin = 100, ymin = 100;
+int xmax = 400, ymax = 300;
+
+int computeCode(int x, int y) {
+    int code = INSIDE;
+
+    if (x < xmin) code |= LEFT;
+    else if (x > xmax) code |= RIGHT;
+
+    if (y < ymin) code |= TOP;
+    else if (y > ymax) code |= BOTTOM;
+
+    return code;
+}
+
+void bresenham(int x1, int y1, int x2, int y2) {
+    int dx = abs(x2 - x1);
+    int dy = abs(y2 - y1);
+
+    int sx = (x1 < x2) ? 1 : -1;
+    int sy = (y1 < y2) ? 1 : -1;
+
+    int err = dx - dy;
+
+    while (true) {
+        putpixel(x1, y1, WHITE);
+
+        if (x1 == x2 && y1 == y2)
+            break;
+
+        int e2 = 2 * err;
+
+        if (e2 > -dy) {
+            err -= dy;
+            x1 += sx;
+        }
+
+        if (e2 < dx) {
+            err += dx;
+            y1 += sy;
+        }
+    }
+}
+
+void clipLine(int x1, int y1, int x2, int y2) {
+    int code1 = computeCode(x1, y1);
+    int code2 = computeCode(x2, y2);
+
+    bool accept = false;
+
+    while (true) {
+        if (!(code1 | code2)) {
+            accept = true;
+            break;
+        }
+        else if (code1 & code2) {
+            break;
+        }
+        else {
+            int codeOut = code1 ? code1 : code2;
+            float x, y;
+
+            if (codeOut & TOP) {
+                x = x1 + (float)(x2 - x1) *
+                    (ymin - y1) / (y2 - y1);
+                y = ymin;
+            }
+            else if (codeOut & BOTTOM) {
+                x = x1 + (float)(x2 - x1) *
+                    (ymax - y1) / (y2 - y1);
+                y = ymax;
+            }
+            else if (codeOut & RIGHT) {
+                y = y1 + (float)(y2 - y1) *
+                    (xmax - x1) / (x2 - x1);
+                x = xmax;
+            }
+            else {
+                y = y1 + (float)(y2 - y1) *
+                    (xmin - x1) / (x2 - x1);
+                x = xmin;
+            }
+
+            if (codeOut == code1) {
+                x1 = (int)x;
+                y1 = (int)y;
+                code1 = computeCode(x1, y1);
+            }
+            else {
+                x2 = (int)x;
+                y2 = (int)y;
+                code2 = computeCode(x2, y2);
+            }
+        }
+    }
+
+    if (accept) {
+        setcolor(GREEN);
+        bresenham(x1, y1, x2, y2);
+    }
+    else {
+        cout << "Line rejected by clipping window\n";
+    }
+}
+
+int main() {
+    int gd = DETECT, gm;
+
+    initgraph(&gd, &gm, "");
+
+    int x1 = 50, y1 = 150;
+    int x2 = 450, y2 = 250;
+
+    // Draw clipping window
+    setcolor(WHITE);
+    rectangle(xmin, ymin, xmax, ymax);
+
+    // Original line
+    setcolor(RED);
+    bresenham(x1, y1, x2, y2);
+
+    // Clipped line
+    clipLine(x1, y1, x2, y2);
+
+    getch();
+    closegraph();
+
+    return 0;
+}
+
+
+
+
+Practical 9: Image Processing Basics
+Aim: To perform simple image operations such as grayscale conversion, thresholding, and blurring using OpenCV.
+
+Algorithm:
+1. Include the OpenCV library.
+2. Read an image from the specified file path.
+3. Check whether the image is loaded successfully.
+4. Convert the original image into grayscale.
+5. Apply binary thresholding to the grayscale image.
+6. Apply Gaussian blur to the original image.
+7. Display the original image.
+8. Display the grayscale, thresholded, and blurred images.
+9. Wait for a key press and close all windows.
+Program:
+
+#include <opencv2/opencv.hpp>
+#include <iostream>
+using namespace cv;
+using namespace std;
+
+int main() {
+    Mat image = imread("image.jpg");
+
+    if (image.empty()) {
+        cout << "Unable to load image!";
+        return 1;
+    }
+
+    Mat gray, thresholdImage, blurred;
+
+    // Grayscale conversion
+    cvtColor(image, gray, COLOR_BGR2GRAY);
+
+    // Thresholding
+    threshold(gray, thresholdImage, 127, 255, THRESH_BINARY);
+
+    // Gaussian Blur
+    GaussianBlur(image, blurred, Size(5, 5), 0);
+
+    // Display images
+    imshow("Original Image", image);
+    imshow("Grayscale Image", gray);
+    imshow("Threshold Image", thresholdImage);
+    imshow("Blurred Image", blurred);
+
+    waitKey(0);
+    destroyAllWindows();
+
+    return 0;
+}
+
