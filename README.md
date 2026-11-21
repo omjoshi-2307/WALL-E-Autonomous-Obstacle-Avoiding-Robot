@@ -33,7 +33,7 @@ To design and build a **fully autonomous robotic system** capable of detecting o
 - Autonomous navigation powered by Arduino UNO  
 - Real-time distance measurement and response  
 - Collision-avoidance decision algorithm  
-- 180° / 360° environment scanning via servo motor  
+- Servo-based left/right obstacle scanning (50° and 170°)  
 - Smooth direction control using motor driver  
 - Low power and efficient operation  
 - Expandable architecture (IoT, Bluetooth, GPS, Camera ready)
@@ -58,33 +58,34 @@ To design and build a **fully autonomous robotic system** capable of detecting o
 
 1. Ultrasonic sensor continuously measures distance from obstacles  
 2. Arduino processes the sensor data  
-3. When an obstacle is detected within a threshold distance:
+3. When an obstacle is detected within **15 cm**:
    - Robot stops  
-   - Servo motor scans left and right  
-   - Arduino compares distances  
+   - Servo scans right at 50°, then left at 170°, returning to center at 115°  
+   - Arduino compares the distances  
    - Safest direction is selected  
-   - Motor driver executes movement commands  
+   - Motor driver executes movement  
 
-This logic enables **collision-free autonomous navigation**.
+This logic enables **collision-avoidance navigation**.
 
 ---
 
 ## 🧠 Algorithm Overview
+
 1. Initialize ultrasonic sensor, servo, and motors  
 2. Measure distance continuously  
-3. If distance < threshold:
+3. If distance is **15 cm or less**:
    - Stop movement
-   - Rotate servo to scan left & right
-   - Compare distances
-   - Move in safest direction
+   - Move backward briefly
+   - Scan both sides and compare distances
+   - Turn toward the side with more clearance
 4. Repeat loop
 
 ---
 
 | Parameter | Value |
 |---------|-------|
-| Obstacle Distance Threshold | 20 cm |
-| Servo Scan Angle | 0° – 180° |
+| Obstacle Distance Threshold | 15 cm (code condition: `distance <= 15`) |
+| Servo Scan Positions | 50° right / 170° left / 115° center |
 | Motor Voltage | 9V |
 
 ---
@@ -95,7 +96,7 @@ This logic enables **collision-free autonomous navigation**.
 - Khushal Choudhary – [LinkedIn](https://www.linkedin.com/in/khushal-choudhary-a022b6374/)  
 - Aryan Ahirrao – [LinkedIn](https://www.linkedin.com/in/aryan-ahirrao-80087b372/)  
 - Virendra Bendale – [LinkedIn](https://www.linkedin.com/in/virendra-bendale-bb339a371/)  
-- Sarthak Ghogare – [LinkedIn](https://www.linkedin.com/in/sarthak-ghogare-b4218a385/)  
+- Sarthak Ghogare – [LinkedIn](https://www.linkedin.com/in/sarthak-ghoghare-b4218a385/)  
 - Shreyas Gore – [LinkedIn](https://www.linkedin.com/in/shreyas-gore-1416823a2/)  
 
 ---
