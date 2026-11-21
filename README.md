@@ -47,7 +47,7 @@ To design and build a **fully autonomous robotic system** capable of detecting o
 | Arduino UNO | Main microcontroller |
 | Ultrasonic Sensor (HC-SR04) | Obstacle detection & distance measurement |
 | Servo Motor | Directional scanning |
-| Motor Driver (L298N / L293D) | DC motor control |
+| Adafruit Motor Shield v1 (AFMotor) | Drives four DC motors on channels 1–4 |
 | DC Motors | Robot movement |
 | Battery (9V / 12V / Li-ion) | Power supply |
 | Robot Chassis | Mechanical structure |
@@ -96,7 +96,7 @@ This logic enables **collision-avoidance navigation**.
 - Khushal Choudhary – [LinkedIn](https://www.linkedin.com/in/khushal-choudhary-a022b6374/)  
 - Aryan Ahirrao – [LinkedIn](https://www.linkedin.com/in/aryan-ahirrao-80087b372/)  
 - Virendra Bendale – [LinkedIn](https://www.linkedin.com/in/virendra-bendale-bb339a371/)  
-- Sarthak Ghogare – [LinkedIn](https://www.linkedin.com/in/sarthak-ghoghare-b4218a385/)  
+- Sarthak Ghogare – [LinkedIn](https://www.linkedin.com/in/sarthak-ghogare-b4218a385/)  
 - Shreyas Gore – [LinkedIn](https://www.linkedin.com/in/shreyas-gore-1416823a2/)  
 
 ---
