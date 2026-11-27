@@ -1,0 +1,31 @@
+name: Servo scan host regression
+
+on:
+  pull_request:
+    paths:
+      - "Software/code.cpp"
+      - "Software/tests/**"
+      - ".github/workflows/servo-scan-host.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "Software/code.cpp"
+      - "Software/tests/**"
+      - ".github/workflows/servo-scan-host.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  host-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Compile host regression harness
+        run: g++ -std=c++17 -Wall -Wextra -Werror -I Software/tests/stubs Software/tests/servo_scan_test.cpp -o /tmp/servo-scan-test
+      - name: Run servo scan regression tests
+        run: /tmp/servo-scan-test
