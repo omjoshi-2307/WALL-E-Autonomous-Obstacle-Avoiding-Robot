@@ -84,6 +84,7 @@ int lookRight()
     int distance = readPing();
     delay(100);
     myservo.write(115); 
+    delay(100); // Allow the servo to settle at center before the next action.
     return distance;
 }
 
@@ -94,8 +95,8 @@ int lookLeft()
     int distance = readPing();
     delay(100);
     myservo.write(115); 
+    delay(100); // Allow the servo to settle at center before the next action.
     return distance;
-    delay(100);
 }
 
 int readPing() { 
